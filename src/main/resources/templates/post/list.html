@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:insert="base :: head(index)">
+</head>
+<body>
+<nav th:insert="base :: navbar"></nav>
+
+<div class="container" id="contenido">
+
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>TITULO</th>
+            <th>NOMBRE AUTOR</th>
+            <th>RESUMEN</th>
+            <th>OPCION ADICIONAL</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="post : ${ListaPost}">
+            <td th:text="${post.}"></td>
+            <td th:text="${employee.firstname} + ' ' +${employee.lastname}"></td>
+            <td th:text="${employee.hiredate}"></td>
+            <td th:text="${employee.salary}"></td>
+            <td th:text="${employee.city}"></td>
+            <td th:text="${employee.country}"></td>
+            <td th:if="${employee.manager !=null}" th:text="${employee.manager.firstname} + ' ' + ${employee.manager.lastname}"></td>
+            <td th:if="${employee.manager ==null}">Sin jefe</td>
+            <td><a class="btn btn-primary" th:href="@{'/employee/edit' + '?id=' + ${employee.id}}">Editar</a>
+            </td>
+            <td><a class="btn btn-danger" th:href="@{'/employee/delete' + '?id=' + ${employee.id}}">Borrar</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+
+
+
+</div>
+</body>
+</html>
