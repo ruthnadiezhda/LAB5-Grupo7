@@ -8,7 +8,8 @@
 
 <div class="container" id="contenido">
 
-
+    <h2>Lista de Posts</h2>
+    <div th:if="${msg != null}" th:text="${msg}" class="alert alert-success" role="alert"></div>
     <table class="table">
         <thead>
         <tr>
@@ -16,22 +17,16 @@
             <th>TITULO</th>
             <th>NOMBRE AUTOR</th>
             <th>RESUMEN</th>
-            <th>OPCION ADICIONAL</th>
+            <th sec:authorize="hasAuthority('admin')">OPCION ADICIONAL</th>
         </tr>
         </thead>
         <tbody>
         <tr th:each="post : ${ListaPost}">
-            <td th:text="${post.}"></td>
-            <td th:text="${employee.firstname} + ' ' +${employee.lastname}"></td>
-            <td th:text="${employee.hiredate}"></td>
-            <td th:text="${employee.salary}"></td>
-            <td th:text="${employee.city}"></td>
-            <td th:text="${employee.country}"></td>
-            <td th:if="${employee.manager !=null}" th:text="${employee.manager.firstname} + ' ' + ${employee.manager.lastname}"></td>
-            <td th:if="${employee.manager ==null}">Sin jefe</td>
-            <td><a class="btn btn-primary" th:href="@{'/employee/edit' + '?id=' + ${employee.id}}">Editar</a>
-            </td>
-            <td><a class="btn btn-danger" th:href="@{'/employee/delete' + '?id=' + ${employee.id}}">Borrar</a>
+            <td th:text="${post.id_post}"></td>
+            <td th:text="${post.title}"></td>
+            <td th:text="${post.user.firstname} + ' ' +${post.user.lastname}"></td>
+            <td th:text="${post.summary}"></td>
+            <td sec:authorize="hasAuthority('admin')"><a class="btn btn-danger" th:href="@{'/post/delete' + '?id=' + ${post.id_post}}">Borrar</a>
             </td>
         </tr>
         </tbody>

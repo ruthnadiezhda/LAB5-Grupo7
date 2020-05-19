@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import sw2.lab5.entity.Post;
 import sw2.lab5.repository.PostRepository;
 
@@ -25,7 +26,7 @@ public class PostController{
     @GetMapping(value = {"list"})
     public String listarPost(Model model) {
         model.addAttribute("ListaPost",postRepository.findAll());
-        return "user/list";
+        return "post/list";
     }
 
     @GetMapping("/new")
@@ -51,6 +52,17 @@ public class PostController{
             return "redirect:/post";
         }
 
+    }
+
+    @GetMapping("/delete")
+    public String borrarEmpleado(@RequestParam("id") int id, RedirectAttributes attr) {
+        Optional<Post> optional = postRepository.findById(id);
+
+        if (optional.isPresent()) {
+            postRepository.deleteById(id);
+        }
+        attr.addFlashAttribute("msg","Post borrado exitosamente");
+        return "redirect:/employee";
     }
 
 
