@@ -26,10 +26,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .defaultSuccessUrl("/redirectByRole", true);
 
 
-        http.authorizeRequests()
-            .antMatchers("/post/**").authenticated()
-            .antMatchers("/user/**").authenticated()
-            .anyRequest().permitAll();
 
         http.authorizeRequests()
                 .antMatchers("/user/list").hasAuthority("admin")
@@ -39,7 +35,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .anyRequest().permitAll();
 
         http.logout()
-                .logoutSuccessUrl("/")
+                .logoutSuccessUrl("/posts/")
                 .deleteCookies("JSESSIONID")
                 .invalidateHttpSession(true);
 
