@@ -31,6 +31,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/post/create","/post/edit").hasAnyAuthority("user","admin")
                 .anyRequest().permitAll();
 
+        http.logout()
+                .logoutSuccessUrl("/")
+                .deleteCookies("JSESSIONID")
+                .invalidateHttpSession(true);
+
     }
 
 
