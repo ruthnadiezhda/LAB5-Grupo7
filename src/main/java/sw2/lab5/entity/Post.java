@@ -13,7 +13,9 @@ public class Post {
     @Column(nullable = false)
     private Integer id_post;
     @Column(nullable = false)
-    private Integer author_id;
+    @ManyToOne
+    @JoinColumn(name="id_user")
+    private User user;
     @Column(nullable = false)
     private String title;
     private String summary;
@@ -29,12 +31,13 @@ public class Post {
         this.id_post = id_post;
     }
 
-    public Integer getAuthor_id() {
-        return author_id;
+
+    public User getUser() {
+        return user;
     }
 
-    public void setAuthor_id(Integer author_id) {
-        this.author_id = author_id;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public String getTitle() {

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:insert="base :: head(index)">
+</head>
+<body>
+<nav th:insert="base :: navbar"></nav>
+
+<div class="container" id="contenido">
+
+    <h2>Nuevo Empleado</h2>
+    <hr/>
+    <form th:action="@{'/post/save'}" method="post">
+
+
+        <div class="form-group">
+            <label for="id_post">Id_post</label>
+            <input th:value="${post.id_post}" type="hidden" type="text" class="form-control" name="id_post" id="id_post"/>
+        </div>
+
+        #Se debe obtener de la sesión con el # POR integrar
+        <div class="form-group">
+            <label for="author_id">Autor </label>
+            <input type="text" class="form-control" name="author_id" id="author_id" type="hidden"/>
+        </div>
+
+
+        <div class="form-group">
+            <label for="title">Título </label>
+            <input th:value="${post.title}" type="text" class="form-control" name="title" id="title"/>
+        </div>
+        <div class="form-group">
+            <label for="summary">Resumen</label>
+            <input th:value="${post.summary}" type="text" class="form-control" name="summary" id="summary"/>
+        </div>
+        <div class="form-group">
+            <label for="content">Contenido</label>
+            <input  th:value="${post.content}" type="text" class="form-control" name="content" id="content"/>
+        </div>
+
+
+        <a th:href="@{'/post'}" class="btn btn-danger">Cancelar</a>
+        <button type="submit" class="btn btn-primary">Actualizar</button>
+    </form>
+
+
+
+
+</div>
+</body>
+</html>
