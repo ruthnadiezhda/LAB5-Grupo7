@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:fragment="head(titulo)">
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
+    <link rel="stylesheet" th:href="@{/css/custom.css}" />
+    <script th:src="@{/js/jquery-3.4.1.min.js}"></script>
+    <script th:src="@{/js/popper.min.js}"></script>
+    <script th:src="@{/js/bootstrap.min.js}"></script>
+    <title th:text="${titulo} ? ${titulo} : 'Laboratorio 5'">Laboratorio 5</title>
+</head>
+<body>
+<nav class="navbar navbar-dark bg-dark navbar-expand-sm fixed-top justify-content-between" th:fragment="navbar">
+    <!-- Links -->
+    <ul class="navbar-nav">
+        <a class="navbar-brand" href="#">Blog Telecom</a>
+        <li class="nav-item">
+            <a class="nav-link" href="#">Link 1</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">Link 2</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">Link 3</a>
+        </li>
+    </ul>
+
+    <div class="d-inline-flex">
+        <div id="usuarioAnonimo">
+            <a class="btn btn-info">Iniciar Sesión</a>
+        </div>
+        <div id="usuarioAutenticado">
+            <span>Bienvenido ___</span>
+            <a class="btn btn-info">Cerrar Sesión</a>
+        </div>
+    </div>
+
+    <h2>Nueva Region</h2><hr />
+    <form method="post" th:action="@{/user/guardar}">
+        <div class="form-group">
+            <label for="id_user">ID</label>
+            <input type="hidden" th:value="${user.id_user}" name="id_user" type="text" class="form-control" id="id_user">
+        </div>
+
+        <div class="form-group">
+            <label for="firstname">NOMBRE</label>
+            <input th:value="${user.firstname}" name="firstname" type="text" class="form-control" id="firstname">
+        </div>
+        <div class="form-group">
+            <label for="lastname">APELLIDO</label>
+            <input th:value="${user.lastname}" name="lastname" type="text" class="form-control" id="lastname">
+        </div>
+
+
+        <div class="form-group">
+            <label for="email">CORREO</label>
+            <input th:value="${user.email}" name="email" type="text" class="form-control" id="email">
+        </div>
+
+        <div class="form-group">
+            <label for="password">PASSWORD</label>
+            <input type="hidden" th:value="${user.password}" name="password" type="text" class="form-control" id="password">
+        </div>
+
+        <div class="form-group">
+            <label for="intro">TEXTO INTRODUCCION</label>
+            <input th:value="${user.intro}" name="intro" type="text" class="form-control" id="intro">
+        </div>
+        <div class="form-group">
+            <label for="profile">TEXTO PERFIL</label>
+            <input th:value="${user.profile}" name="profile" type="text" class="form-control" id="profile">
+        </div>
+
+        <div class="form-group">
+            <label for="active">ACTIVO</label>
+            <input type="hidden" th:value="${user.active}" name="active" type="text" class="form-control" id="active">
+        </div>
+
+        <div class="form-group">
+            <label for="id_role">ID ROL</label>
+            <input type="hidden" th:value="${user.id_role}" name="id_role" type="text" class="form-control" id="id_role">
+        </div>
+
+        <a th:href="@{/user/list}" class="btn btn-danger">Cancelar</a>
+        <button type="submit" class="btn btn-primary">Registrar</button>
+    </form>
+
+</nav>
+</body>
+</html>
